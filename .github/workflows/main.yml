@@ -15,5 +15,5 @@ jobs:
         uses: actions/checkout@v4
       - name: Get BTC MAP Rank1
         id: getRank
-        run: curl "https://nominatim.openstreetmap.org/lookup?osm_ids=R3495547&format=json&polygon_geojson=3495547" | jq .geojson
+        run: curl "https://nominatim.openstreetmap.org/lookup?osm_ids=R3495547&format=json&polygon_geojson=3495547" | jq '.[0].geojson'
         
