@@ -1,0 +1,19 @@
+name: get BTCMAP rank
+
+on:
+ workflow_call:
+ workflow_dispatch:
+ 
+
+jobs:
+  genRank:
+    environment:
+      name: ${{ github.ref_name }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Get BTC MAP Rank1
+        id: getRank
+        run: curl "https://overpass-api.de/api/interpreter?data=[out:json];relation(3495547);out geom;"
+        
