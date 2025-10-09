@@ -15,5 +15,5 @@ jobs:
         uses: actions/checkout@v4
       - name: Get BTC MAP Rank1
         id: getRank
-        run: npm install -g mapshaper && curl "https://nominatim.openstreetmap.org/lookup?osm_ids=R${{ vars.OSM_ID }}&format=json&polygon_geojson=" | jq '.[0].geojson' > input.json && mapshaper input.json -simplify 10% -o output.json && cat output.json | jq '.geometries[0]' -c > geo.json && GEOJSON=$(cat geo.json) && curl -X POST https://pastebin.com/api/api_post.php -d "api_dev_key=${{ secrets.PASTE_BIN_API_KEY }}" -d 'api_option=paste' -d "api_paste_code=$GEOJSON"
+        run: npm install -g mapshaper && curl "https://nominatim.openstreetmap.org/lookup?osm_ids=R${{ vars.OSM_ID }}&format=json&polygon_geojson=" | jq '.[0].geojson' > input.json && mapshaper input.json -simplify 10% -o output.json && cat output.json | jq '.geometries[0]' -c > geo.json && jq length geo.json && GEOJSON=$(cat geo.json) && curl -X POST https://pastebin.com/api/api_post.php -d "api_dev_key=${{ secrets.PASTE_BIN_API_KEY }}" -d 'api_option=paste' -d "api_paste_code=$GEOJSON"
   
