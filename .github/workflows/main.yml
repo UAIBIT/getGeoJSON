@@ -1,4 +1,4 @@
-name: get BTCMAP rank
+name: get geojson
 
 on:
  workflow_call:
