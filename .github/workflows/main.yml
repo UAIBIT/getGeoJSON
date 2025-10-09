@@ -20,14 +20,9 @@ jobs:
         with:
          name: output geojson
          path: output.json
-      - name: Update/Create Gist
-        uses: sindresorhus/create-gist@v3
+      - name: Deploy
+        uses: exuanbo/actions-deploy-gist@v1
         with:
-          # REQUIRED: The token you stored as a secret in Step 1.
-          token: ${{ secrets.GIST_TOKEN }} 
-          
-          # REQUIRED: The ID of the Gist to update. If it doesn't exist, it will be created.
-          # To create a new Gist, leave this out (or set it to an empty string), 
-          # but then you must use a static 'name' for the file.
-          gist-id: 'geojson'
-          file: geo.json
+            token: ${{ secrets.GIST_TOKEN }}
+            gist_id: from_gist_url
+            file_path: geo.json
