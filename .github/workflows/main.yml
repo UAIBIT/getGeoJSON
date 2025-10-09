@@ -16,13 +16,9 @@ jobs:
       - name: Get BTC MAP Rank1
         id: getRank
         run: npm install -g mapshaper && curl "https://nominatim.openstreetmap.org/lookup?osm_ids=R7477259&format=json&polygon_geojson=" | jq '.[0].geojson' > input.json && mapshaper input.json -simplify 10% -o output.json && cat output.json | jq '.geometries[0]' -c > geo.json
-      - uses: actions/upload-artifact@v4
-        with:
-         name: output geojson
-         path: output.json
       - name: Deploy
         uses: exuanbo/actions-deploy-gist@v1
         with:
             token: ${{ secrets.GIST_TOKEN }}
-            gist_id: from_gist_url
+            gist_id: b7e8e9eda6df4fe0e4f59d75f8670fe0
             file_path: geo.json
